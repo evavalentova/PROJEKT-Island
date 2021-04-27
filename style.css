@@ -1,6 +1,12 @@
 /* intuitivnejší box-sizing */
-html { box-sizing: border-box; }
-*, ::after, ::before { box-sizing: inherit; }
+html {
+  box-sizing: border-box;
+}
+*,
+::after,
+::before {
+  box-sizing: inherit;
+}
 
 /*
 	BARVY
@@ -12,13 +18,348 @@ html { box-sizing: border-box; }
 	Merriweather		základní font na stránce
 	Raleway					nadpisy a menu
 	Oba fonty jsou dostupné na Google Fonts.
+
+	font-family: 'Merriweather', serif;
+	font-family: 'Raleway', sans-serif;
 */
 
 body {
-	margin: 0;
-	padding: 0;
-	background-color: #f5f5f5;
-	font-size: 16px;
-	line-height: 1.6;
+  margin: 0;
+  padding: 0;
+  background-color: #f5f5f5;
+  font-size: 16px;
+  line-height: 1.6;
+  font-family: "Merriweather", serif;
 }
 
+img {
+  width: 100%;
+}
+
+/* Hlavička stránky */
+
+.header {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)),
+    url(images/island-hlavicka.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center;
+  color: white;
+  padding: 25px;
+  text-align: center;
+}
+
+.header__headline {
+  font-size: 50px;
+  margin: 0;
+  font-family: "Raleway", sans-serif;
+}
+
+.header__name {
+  font-style: italic;
+}
+
+.header__name::before {
+  content: "";
+  display: block;
+  width: 80px;
+  height: 2px;
+  background-color: white;
+  margin: 30px auto 10px auto;
+}
+
+/* Menu stránky */
+
+.section-menu {
+  padding: 25px;
+}
+
+.menu {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+}
+
+.menu__item {
+  display: block;
+}
+
+.menu__link {
+  text-decoration: none;
+  display: block;
+  color: grey;
+  font-family: "Raleway", sans-serif;
+  text-transform: uppercase;
+  padding: 5px 10px;
+  border-bottom: lightgrey solid 1px;
+}
+
+.menu__link:hover {
+  color: white;
+  background-color: grey;
+}
+
+.menu__link:active {
+  color: white;
+  background-color: grey;
+}
+
+/* Obsah stránky a fotogalerie */
+
+.contain__text {
+  padding-left: 25px;
+  padding-right: 25px;
+}
+
+.contain__text--margin {
+  margin-top: 50px;
+}
+
+.contain__image,
+.photogallery__image {
+  margin-top: 25px;
+}
+
+.contain__image-quote,
+.photogallery__place-name {
+  font-size: 14px;
+  color: grey;
+  text-align: center;
+  margin: 0;
+  font-family: "Raleway", sans-serif;
+}
+
+.contain__image-link,
+.photogallery__link {
+  color: grey;
+}
+
+.contain__headline,
+.photogallery__headline {
+  font-family: "Raleway", sans-serif;
+  font-size: 25px;
+  margin-bottom: 0;
+  margin-left: 25px;
+  margin-top: 50px;
+}
+
+/* Modré podtržení nadpisu H2 - nedaří se mi dát úplně k okraji stránky - vyřešila jsem záporným marginem */
+
+.contain__headline:after,
+.photogallery__headline:after {
+  content: "";
+  display: block;
+  width: 100px;
+  height: 3px;
+  background-color: #629fe0;
+  margin: 25px 0 35px -50px;
+}
+
+.photogallery {
+  padding-bottom: 25px;
+}
+
+/* Patička */
+
+.footer {
+  background-color: #f5f5f5;
+  padding: 24px;
+  font-size: 14px;
+  color: grey;
+  box-shadow: inset 0px 13px 10px -12px silver;
+}
+
+.footer__text {
+  margin-top: 0;
+}
+
+.footer__link {
+  color: grey;
+}
+
+/* Media query pro tablet šířka 540px až 960px */
+
+@media screen and (min-width: 540px) {
+  .header__headline {
+    font-size: 65px;
+  }
+
+  /* Menu pro tablet šířka 540px až 960px - trošku jsem se v tom ztratila a nevím, jak se zbavit mezer mezi položkami menu. Podařilo se mi zbavit mezer, dala jsem to do flexboxu, ale když je to menší tablet, tak některé položky toho menu jsou vyšší než ostatní. */
+
+  .menu {
+    display: flex;
+    align-items: flex-end;
+  }
+
+  .menu__item {
+    flex: 0 0 calc(100% / 4);
+  }
+
+  .menu__link {
+    padding: 5px 5px;
+    border-top: lightgray solid 1px;
+    border-bottom: lightgray solid 1px;
+  }
+
+  /* Obsah stránky pro tablet šířka 540px až 960px */
+
+  .contain__image,
+  .photogallery__image {
+    margin-top: 50px;
+  }
+
+  .contain__image--quote-position {
+    position: relative;
+  }
+
+  .contain__image-quote {
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    color: white;
+  }
+
+  .contain__image-link {
+    color: white;
+  }
+
+  /* Animovaná galerie pro tablet šířka 540px až 960px */
+
+  .photogallery__flexbox {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .photogallery__animation {
+    flex: 0 0 50%;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .photogallery__image {
+    width: 100%;
+    display: block;
+    transition: transform 0.5s;
+    margin: 0;
+  }
+
+  .photogallery__place-name {
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    text-align: center;
+    position: absolute;
+    left: 0;
+    top: 100%;
+    width: 100%;
+    transition: transform 0.5s;
+    margin: 0;
+  }
+
+  .photogallery__link {
+    color: white;
+  }
+
+  .photogallery__animation:hover .photogallery__place-name {
+    transform: translateY(-100%);
+  }
+
+  .photogallery__animation:hover .photogallery__image {
+    transform: scale(1.1);
+  }
+
+  .photogallery {
+    padding: 0;
+  }
+}
+
+/* Media query pro PC šířka 960px a víc */
+
+@media screen and (min-width: 960px) {
+  /* Hlavička a obsah pro PC šířka 960px a víc */
+
+  .header {
+    padding: 100px 250px;
+  }
+
+  .header__headline {
+    font-size: 90px;
+  }
+
+  .main-content {
+    max-width: 960px;
+    margin: -75px auto 0 auto;
+    background-color: white;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  }
+
+  /* Menu a flexbox první odstavec pro PC šířka 960px a víc */
+
+  .menu {
+    display: block;
+  }
+
+  .menu__link {
+    border: none;
+    border-bottom: lightgrey solid 1px;
+    text-align: left;
+  }
+
+  .main-content__first {
+    display: flex;
+    padding: 50px;
+  }
+
+  .section-menu {
+    flex: 0 0 300px;
+    padding: 0 50px 0 0;
+    margin-top: 16px;
+  }
+
+  .contain__text {
+    padding: 0;
+    margin: 0;
+  }
+
+  .contain__image {
+    margin: 0;
+  }
+
+  .contain__headline {
+    font-size: 35px;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* Druhý a třetí odstavec pro PC šířka 960px a víc */
+
+  .main-content__second {
+    padding: 50px 300px 50px 50px;
+  }
+
+  .main-content__third,
+  .contain__text--margin {
+    padding: 50px 50px 50px 300px;
+  }
+
+  /* Animovaná fotogalerie pro PC šířka 960px a víc */
+
+  .photogallery__headline {
+    font-size: 35px;
+    padding: 50px 0 0 50px;
+    margin: 0;
+  }
+
+  .photogallery__animation {
+    flex: 0 0 calc(100% / 3);
+  }
+
+  /* Patička pro PC šířka 960px a víc */
+
+  .footer {
+    box-shadow: none;
+    margin: 50px auto 0 auto;
+    padding: 0 0 25px 0;
+    max-width: 960px;
+  }
+}
